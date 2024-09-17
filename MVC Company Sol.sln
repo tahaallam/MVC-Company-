@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC Company", "MVC Company\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Data", "F:\Demo With Yousef\Company.Data\Company.Data.csproj", "{749D63A6-84C8-457F-9C04-F3C7745D89B4}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Repository", "F:\Demo With Yousef\Company.Repository\Company.Repository.csproj", "{FF175F88-B5AB-402C-828B-40E48DB19BE4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{749D63A6-84C8-457F-9C04-F3C7745D89B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{749D63A6-84C8-457F-9C04-F3C7745D89B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{749D63A6-84C8-457F-9C04-F3C7745D89B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF175F88-B5AB-402C-828B-40E48DB19BE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF175F88-B5AB-402C-828B-40E48DB19BE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF175F88-B5AB-402C-828B-40E48DB19BE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF175F88-B5AB-402C-828B-40E48DB19BE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
