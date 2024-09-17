@@ -31,6 +31,7 @@ namespace MVC_Company
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
+           
         }
     }
 }
