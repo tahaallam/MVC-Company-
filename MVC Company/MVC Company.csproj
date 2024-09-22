@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="F:\Demo With Yousef\Company.Data\Company.Data.csproj" />
     <ProjectReference Include="F:\Demo With Yousef\Company.Repository\Company.Repository.csproj" />
   </ItemGroup>
