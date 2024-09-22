@@ -18,7 +18,14 @@ namespace MVC_Company.Controllers
             var department = _departmentServices.GetAll();
             return View(department);
         }
-        public IActionResult Create(Department department)
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+
+        }
+        [HttpPost]
+        public IActionResult Create(Department department )
         {
             try
             {
@@ -35,7 +42,6 @@ namespace MVC_Company.Controllers
                 ModelState.AddModelError("error", ex.Message);
                 return View(department);
             }
-
         }
     }
     }
