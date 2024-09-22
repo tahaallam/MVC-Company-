@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -6,5 +6,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>MVC_Company</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="F:\Demo With Yousef\Company.Data\Company.Data.csproj" />
+    <ProjectReference Include="F:\Demo With Yousef\Company.Repository\Company.Repository.csproj" />
+    <ProjectReference Include="F:\Demo With Yousef\Company.Services\Company.Services.csproj" />
+  </ItemGroup>
 
 </Project>

@@ -1,3 +1,11 @@
+using Company.Data.Contexts;
+using Company.Data.Models;
+using Company.Repository.Interfaces;
+using Company.Repository.Repositories;
+using Company.Services.Interfaces;
+using Company.Services.Services;
+using Microsoft.EntityFrameworkCore;
+
 namespace MVC_Company
 {
     public class Program
@@ -8,8 +16,16 @@ namespace MVC_Company
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<CompanyDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
+            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            builder.Services.AddScoped<IDepartmentServices, DepartmentServices>();
+            builder.Services.AddScoped<IGenericRepository<BaseEntity> , GenericRepository<BaseEntity>>();
 
-            var app = builder.Build();
+            var app = builder.Build(); 
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
