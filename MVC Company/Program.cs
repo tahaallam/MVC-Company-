@@ -22,7 +22,7 @@ namespace MVC_Company
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseRouting();          
+            app.UseRouting();
 
             app.UseAuthorization();
 
@@ -31,7 +31,6 @@ namespace MVC_Company
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
-
            
         }
     }
