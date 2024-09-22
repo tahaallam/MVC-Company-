@@ -43,5 +43,15 @@ namespace MVC_Company.Controllers
                 return View(department);
             }
         }
+        public IActionResult Details(int id)
+        {
+            var department = _departmentServices.GetById(id);
+            if (department is null )
+            {
+                return NotFound();
+            }
+            return View(department);
+           
+        }
     }
     }
