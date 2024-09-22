@@ -7,4 +7,9 @@
     <RootNamespace>MVC_Company</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="F:\Demo With Yousef\Company.Data\Company.Data.csproj" />
+    <ProjectReference Include="F:\Demo With Yousef\Company.Repository\Company.Repository.csproj" />
+  </ItemGroup>
+
 </Project>

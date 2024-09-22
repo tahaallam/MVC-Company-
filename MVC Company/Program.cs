@@ -1,3 +1,7 @@
+using Company.Data.Contexts;
+using Company.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
 namespace MVC_Company
 {
     public class Program
@@ -8,6 +12,11 @@ namespace MVC_Company
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<CompanyDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
+            builder.Services.AddScoped<IEmployeeRepository, IEmployeeRepository>();
 
             var app = builder.Build();
 
