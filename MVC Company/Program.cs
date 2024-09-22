@@ -1,5 +1,6 @@
 using Company.Data.Contexts;
 using Company.Repository.Interfaces;
+using Company.Repository.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace MVC_Company
@@ -17,6 +18,7 @@ namespace MVC_Company
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
             builder.Services.AddScoped<IEmployeeRepository, IEmployeeRepository>();
+            builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 
             var app = builder.Build();
 
