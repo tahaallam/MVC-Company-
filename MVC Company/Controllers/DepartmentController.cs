@@ -43,15 +43,24 @@ namespace MVC_Company.Controllers
                 return View(department);
             }
         }
-        public IActionResult Details(int id)
+        public IActionResult Details(int? id , string ViewName = "Details")
         {
             var department = _departmentServices.GetById(id);
+            if (id is null)
+            {
+                return BadRequest();
+            }
+            
             if (department is null )
             {
                 return NotFound();
             }
-            return View(department);
+            return View(ViewName,department);
            
+        }
+        public IActionResult Update(int? id)
+        {
+            return Details(id, "Update");
         }
     }
     }

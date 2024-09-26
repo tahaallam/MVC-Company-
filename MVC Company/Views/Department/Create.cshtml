@@ -15,11 +15,11 @@
         <input class="form-control" asp-for="Name" />
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
-    <div>
+   @*  <div>
         <label class="col-form-label" asp-for="CreatedAt"></label>
         <input class="form-control" asp-for="CreatedAt" />
         <span asp-validation-for="CreatedAt" class="text-danger"></span>
-    </div>
+    </div> *@
     <input type="submit" value="Submit" class="btn btn-primary" />
     <a asp-action="Index" class="btn btn-light">Back To List</a>
 </form>
