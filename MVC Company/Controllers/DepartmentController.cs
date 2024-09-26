@@ -45,26 +45,28 @@ namespace MVC_Company.Controllers
         }
         public IActionResult Details(int? id , string ViewName = "Details")
         {
-            var department = _departmentServices.GetById(id);
+            
             if (id is null)
             {
                 return BadRequest();
             }
+            var department = _departmentServices.GetById(id.Value);
 
-            if (department is null )
+            if (department == null )
             {
                 return NotFound();
             }
             return View(ViewName,department);
-           
+            
         }
+        [HttpGet]
         public IActionResult Update(int? id)
         {
             return Details(id, "Update");
         }
-        [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Update(Department department , int? id)
+        [HttpPost]
+        public IActionResult Update(Department department ,[FromRoute] int? id)
         {
             if (id != department.Id)
             {
@@ -76,27 +78,38 @@ namespace MVC_Company.Controllers
             }
             if (ModelState.IsValid)
             {
-            _departmentServices.Update(department);
-            return RedirectToAction(nameof(Index));
+                _departmentServices.Update(department);
+                return RedirectToAction(nameof(Index));
             }
             return View(department);
             
         }
-        [HttpGet]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int? id) 
         {
-            return Details(id, "Delete"); 
-        }
-        [HttpPost]
-        public IActionResult Delete(Department department , int?id)
-        {
-            if (id != department.Id)
+            var dept = _departmentServices.GetById(id);
+            if (dept is null)
             {
-                return BadRequest();
+                return NotFound();
             }
-            if (department is null) { return NotFound(); }
-            _departmentServices.Delete(department);
-            return RedirectToAction(nameof(Index)); 
+            _departmentServices.Delete(dept);
+            return RedirectToAction(nameof(Index));
         }
+        //[HttpGet]
+        //public IActionResult Delete(int? id)
+        //{
+            
+        //    return Details(id, "Delete"); 
+        //}
+        //[HttpPost]
+        //public IActionResult Delete(Department department , int?id)
+        //{
+        //    if (id != department.Id)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    if (department is null) { return NotFound(); }
+        //    _departmentServices.Delete(department);
+        //    return RedirectToAction(nameof(Index)); 
+        //}
     }
     }

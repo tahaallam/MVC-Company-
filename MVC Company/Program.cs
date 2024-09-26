@@ -22,8 +22,9 @@ namespace MVC_Company
             });
             builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
-            builder.Services.AddScoped<IDepartmentServices, DepartmentServices>();
-            builder.Services.AddScoped<IGenericRepository<BaseEntity> , GenericRepository<BaseEntity>>();
+            builder.Services.AddScoped<IUnitOfWork , UnitOfWork>();
+           builder.Services.AddScoped<IDepartmentServices, DepartmentServices>();
+            builder.Services.AddScoped<IGenericRepository<BaseEntity>, GenericRepository<BaseEntity>>();
 
             var app = builder.Build(); 
 
