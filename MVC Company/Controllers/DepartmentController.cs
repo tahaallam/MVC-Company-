@@ -45,22 +45,71 @@ namespace MVC_Company.Controllers
         }
         public IActionResult Details(int? id , string ViewName = "Details")
         {
-            var department = _departmentServices.GetById(id);
+            
             if (id is null)
             {
                 return BadRequest();
             }
-            
-            if (department is null )
+            var department = _departmentServices.GetById(id.Value);
+
+            if (department == null )
             {
                 return NotFound();
             }
             return View(ViewName,department);
-           
+            
         }
+        [HttpGet]
         public IActionResult Update(int? id)
         {
             return Details(id, "Update");
         }
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public IActionResult Update(Department department ,[FromRoute] int? id)
+        {
+            if (id != department.Id)
+            {
+                return BadRequest();
+            }
+            if (department is null)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+                _departmentServices.Update(department);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(department);
+            
+        }
+        public IActionResult Delete(int? id) 
+        {
+            var dept = _departmentServices.GetById(id);
+            if (dept is null)
+            {
+                return NotFound();
+            }
+            _departmentServices.Delete(dept);
+            return RedirectToAction(nameof(Index));
+        }
+        //[HttpGet]
+        //public IActionResult Delete(int? id)
+        //{
+            
+        //    return Details(id, "Delete"); 
+        //}
+        //[HttpPost]
+        //public IActionResult Delete(Department department , int?id)
+        //{
+        //    if (id != department.Id)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    if (department is null) { return NotFound(); }
+        //    _departmentServices.Delete(department);
+        //    return RedirectToAction(nameof(Index)); 
+        //}
     }
     }
