@@ -50,7 +50,7 @@ namespace MVC_Company.Controllers
             {
                 return BadRequest();
             }
-            
+
             if (department is null )
             {
                 return NotFound();
@@ -61,6 +61,42 @@ namespace MVC_Company.Controllers
         public IActionResult Update(int? id)
         {
             return Details(id, "Update");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Update(Department department , int? id)
+        {
+            if (id != department.Id)
+            {
+                return BadRequest();
+            }
+            if (department is null)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+            _departmentServices.Update(department);
+            return RedirectToAction(nameof(Index));
+            }
+            return View(department);
+            
+        }
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            return Details(id, "Delete"); 
+        }
+        [HttpPost]
+        public IActionResult Delete(Department department , int?id)
+        {
+            if (id != department.Id)
+            {
+                return BadRequest();
+            }
+            if (department is null) { return NotFound(); }
+            _departmentServices.Delete(department);
+            return RedirectToAction(nameof(Index)); 
         }
     }
     }
