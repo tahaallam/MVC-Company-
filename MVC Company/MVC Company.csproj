@@ -12,9 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="F:\Demo With Yousef\Company.Data\Company.Data.csproj" />
-    <ProjectReference Include="F:\Demo With Yousef\Company.Repository\Company.Repository.csproj" />
-    <ProjectReference Include="F:\Demo With Yousef\Company.Services\Company.Services.csproj" />
+    <ProjectReference Include="..\..\Company.Data\Company.Data.csproj" />
+    <ProjectReference Include="..\..\Company.Repository\Company.Repository.csproj" />
+    <ProjectReference Include="..\..\Company.Services\Company.Services.csproj" />
   </ItemGroup>
 
 </Project>

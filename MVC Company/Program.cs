@@ -20,11 +20,12 @@ namespace MVC_Company
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
-            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-            builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
-            builder.Services.AddScoped<IUnitOfWork , UnitOfWork>();
+           builder.Services.AddScoped<IUnitOfWork , UnitOfWork>();
            builder.Services.AddScoped<IDepartmentServices, DepartmentServices>();
-            builder.Services.AddScoped<IGenericRepository<BaseEntity>, GenericRepository<BaseEntity>>();
+           builder.Services.AddScoped<IEmployeeServices, EmployeeServices>();
+          //  builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+           // builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            // builder.Services.AddScoped<IGenericRepository<BaseEntity>, GenericRepository<BaseEntity>>();
 
             var app = builder.Build(); 
 
