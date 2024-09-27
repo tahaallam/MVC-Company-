@@ -8,10 +8,12 @@ namespace MVC_Company.Controllers
     public class EmployeeController : Controller
     {
         private readonly IEmployeeServices _employeeServices;
+        private readonly IDepartmentServices _departmentServices;
 
-        public EmployeeController(IEmployeeServices employeeServices)
+        public EmployeeController(IEmployeeServices employeeServices , IDepartmentServices departmentServices)
         {
             _employeeServices = employeeServices;
+            _departmentServices = departmentServices;
         }
         [HttpGet]
         public IActionResult Index(string SearchInp)
@@ -30,6 +32,7 @@ namespace MVC_Company.Controllers
         }
         public IActionResult Create()
         {
+            ViewBag.Departments = _departmentServices.GetAll();
             return View();
 
         }
