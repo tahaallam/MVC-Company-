@@ -1,5 +1,6 @@
 ﻿using Company.Data.Models;
 using Company.Repository.Interfaces;
+using Company.Services.DeptDto;
 using Company.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,7 +26,7 @@ namespace MVC_Company.Controllers
 
         }
         [HttpPost]
-        public IActionResult Create(Department department )
+        public IActionResult Create(DepartmentDto department )
         {
             try
             {
@@ -66,7 +67,7 @@ namespace MVC_Company.Controllers
         }
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public IActionResult Update(Department department ,[FromRoute] int? id)
+        public IActionResult Update(DepartmentDto department ,[FromRoute] int? id)
         {
             if (id != department.Id)
             {

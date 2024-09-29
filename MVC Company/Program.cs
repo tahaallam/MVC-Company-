@@ -3,6 +3,7 @@ using Company.Data.Models;
 using Company.Repository.Interfaces;
 using Company.Repository.Repositories;
 using Company.Services.Interfaces;
+using Company.Services.Profiles;
 using Company.Services.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,10 +20,14 @@ namespace MVC_Company
             builder.Services.AddDbContext<CompanyDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+               options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
            builder.Services.AddScoped<IUnitOfWork , UnitOfWork>();
            builder.Services.AddScoped<IDepartmentServices, DepartmentServices>();
            builder.Services.AddScoped<IEmployeeServices, EmployeeServices>();
+            builder.Services.AddAutoMapper(X => X.AddProfile(new EmployeeProfile()));
+            builder.Services.AddAutoMapper(X => X.AddProfile(new DepartmentProfile()));
+
           //  builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
            // builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             // builder.Services.AddScoped<IGenericRepository<BaseEntity>, GenericRepository<BaseEntity>>();
