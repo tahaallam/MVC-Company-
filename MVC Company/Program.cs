@@ -5,6 +5,7 @@ using Company.Repository.Repositories;
 using Company.Services.Interfaces;
 using Company.Services.Profiles;
 using Company.Services.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace MVC_Company
@@ -28,9 +29,30 @@ namespace MVC_Company
             builder.Services.AddAutoMapper(X => X.AddProfile(new EmployeeProfile()));
             builder.Services.AddAutoMapper(X => X.AddProfile(new DepartmentProfile()));
 
-          //  builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-           // builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            //  builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            // builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             // builder.Services.AddScoped<IGenericRepository<BaseEntity>, GenericRepository<BaseEntity>>();
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(config =>
+            {
+                config.Password.RequiredUniqueChars= 2;
+                config.Password.RequireDigit= true;
+                config.Password.RequireLowercase= true;
+                config.Password.RequireUppercase= true;
+                config.Password.RequireNonAlphanumeric= true;
+                config.User.RequireUniqueEmail= true;   
+                config.Lockout.AllowedForNewUsers= true;
+                config.Lockout.MaxFailedAccessAttempts= 3;
+                config.Lockout.DefaultLockoutTimeSpan= TimeSpan.FromMinutes(3);
+
+            }).AddEntityFrameworkStores<CompanyDbContext>().AddDefaultTokenProviders();
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                options.SlidingExpiration = true;
+
+            });
 
             var app = builder.Build(); 
 

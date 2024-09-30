@@ -17,6 +17,7 @@ namespace MVC_Company.Controllers
         public IActionResult Index()
         {
             var department = _departmentServices.GetAll();
+            
             return View(department);
         }
         [HttpGet]

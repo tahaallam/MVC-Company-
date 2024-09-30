@@ -1,5 +1,6 @@
 ﻿using Company.Data.Models;
 using Company.Services.EmployeeDtos;
+using Company.Services.Helper;
 using Company.Services.Interfaces;
 using Company.Services.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,7 @@ namespace MVC_Company.Controllers
         {
             if (string.IsNullOrEmpty(SearchInp))
             {
+                IEnumerable<EmployeeDto> employees;
                 var emp = _employeeServices.GetAll();
                 return View(emp);
             }
@@ -35,7 +37,6 @@ namespace MVC_Company.Controllers
         {
             ViewBag.Departments = _departmentServices.GetAll();
             return View();
-
         }
         [HttpPost]
         public IActionResult Create(EmployeeDto employee)
@@ -44,6 +45,7 @@ namespace MVC_Company.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    employee.ImgUrl = DocumentSettings.UploadFile(employee.Image, "Images");
                     _employeeServices.Add(employee);
                     return RedirectToAction(nameof(Index));
                 }
