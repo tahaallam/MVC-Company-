@@ -12,11 +12,11 @@
 <h1>All Employees</h1>
 
 <div class="row justify-content-center align-items-center mt-5">
-    <form class="row col-8 offset-2 " asp-action="Index">
+    <form class="row  offset-2 " asp-action="Index">
         <div class="col-8">
-            <input type="text" class="form-control" name="SearchInp" placeholder="Search By Name" />
+            <input type="text" class="form-control" name="searchInp" placeholder="Search By Name" />
         </div>
-        <div class="col-8">
+        <div class="col-4">
             <input type="submit" value="Search" class="btn btn-success" />
         </div>
     </form>
@@ -29,13 +29,14 @@
     <table class="table table-striped table-bordered table-hover mt-3" style="text-align:center">
         <thead>
             <tr>
+                <td> @Html.DisplayNameFor(D => D.Image)</td>
                 <td> @Html.DisplayNameFor(D => D.Name)</td>
                 <td> @Html.DisplayNameFor(D => D.Address)</td>
                 <td> @Html.DisplayNameFor(D => D.Age)</td>
                 <td> @Html.DisplayNameFor(D => D.PhoneNumber)</td>
                 <td> @Html.DisplayNameFor(D => D.Email)</td>
                 <td> @Html.DisplayNameFor(D => D.Salary)</td>
-                <td> @Html.DisplayNameFor(D => D.ImgUrl)</td>
+               @*  <td> @Html.DisplayNameFor(D => D.ImgUrl)</td> *@
                 <td> @Html.DisplayNameFor(D => D.Department)</td>
                 <td> @Html.DisplayNameFor(D => D.CreatedAt)</td>
                 <td> @Html.DisplayNameFor(D => D.HiringDate)</td>
@@ -49,13 +50,14 @@
             @foreach (var employee in Model)
             {
                 <tr>
+                    <td><img src="~/Files/Images/@employee.ImgUrl" class="rounded" height="40" width="40" /></td>
                     <td> @employee.Name</td>
                     <td> @employee.Address</td>
                     <td> @employee.Age</td>
                     <td> @employee.PhoneNumber</td>
                     <td> @Html.DisplayFor(E => employee.Email)</td>
                     <td> @Html.DisplayFor(E => employee.Salary)</td>
-                    <td> @Html.DisplayFor(E => employee.ImgUrl)</td>
+                    @* <td> @Html.DisplayFor(E => employee.ImgUrl)</td> *@
                     <td> @Html.DisplayFor(E => employee.Department.Name)</td>
                     <td> @employee.CreatedAt</td>
                     <td> @employee.HiringDate</td>
