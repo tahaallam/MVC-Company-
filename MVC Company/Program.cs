@@ -53,7 +53,7 @@ namespace MVC_Company
                 options.SlidingExpiration = true;
 
             });
-
+            builder.Services.AddAuthentication();
             var app = builder.Build(); 
 
             // Configure the HTTP request pipeline.
@@ -73,7 +73,7 @@ namespace MVC_Company
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Account}/{action=Register}/{id?}");
+                pattern: "{controller=Account}/{action=Login}/{id?}");
 
             app.Run();
            
