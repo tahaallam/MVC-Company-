@@ -5,6 +5,7 @@ using Company.Repository.Repositories;
 using Company.Services.Interfaces;
 using Company.Services.Profiles;
 using Company.Services.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -53,7 +54,11 @@ namespace MVC_Company
                 options.SlidingExpiration = true;
 
             });
-            builder.Services.AddAuthentication();
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                options.LoginPath = "Account/Login";
+                options.AccessDeniedPath = "Home/error";
+            });
             var app = builder.Build(); 
 
             // Configure the HTTP request pipeline.
@@ -68,7 +73,7 @@ namespace MVC_Company
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
