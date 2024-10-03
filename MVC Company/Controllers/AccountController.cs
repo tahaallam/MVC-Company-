@@ -30,14 +30,17 @@ namespace MVC_Company.Controllers
 					LastName = model.LastName,
 					IsAgree = model.IsAgree,
 				};
-				var result = await _userManager.CreateAsync(User , model.Password);
+				var result = await _userManager.CreateAsync(User, model.Password);
 				if (result.Succeeded)
 					RedirectToAction("Login");
 
+				foreach (var error in result.Errors)
 				
+					ModelState.AddModelError(string.Empty, error.Description);
+				}
+
+				return View(model);
 			}
-			ModelState.AddModelError(string.Empty, "Error");
-			return View(model);
-		}
+		
 	}
 }
